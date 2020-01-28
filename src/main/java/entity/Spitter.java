@@ -3,15 +3,29 @@ package entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 public class Spitter {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private final Long id;
+
+    @NotNull
+    @Size(min = 5, max = 16)
     private final String username;
+
+    @NotNull
+    @Size(min = 5, max = 25)
     private final String password;
+
+    @NotNull
+    @Size(min = 2, max = 30)
     private final String firstName;
+
+    @NotNull
+    @Size(min = 2, max = 30)
     private final String lastName;
 
     public Spitter(String username, String password, String firstName, String lastName) {
