@@ -48,6 +48,7 @@ public class HomeControllerTest {
         return spittles;
     }
 
+
     @Test
     public void testSpittle() throws Exception {
         Spittle expectedSpittle = new Spittle("Hello", new Date());
