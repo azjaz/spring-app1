@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
-<html>
+<html xmlns:sf="http://www.w3.org/1999/xhtml">
 <head>
     <title>Spittr</title>
     <link rel="stylesheet" type="text/css"
@@ -8,12 +8,13 @@
 </head>
 <body>
 <h1>Register</h1>
-<form method="POST">
-    First Name: <input type="text" name="firstName" /><br/>
-    Last Name: <input type="text" name="lastName" /><br/>
-    Username: <input type="text" name="username" /><br/>
-    Password: <input type="password" name="password" /><br/>
+<sf:form method="POST" commandName="spitter">
+    First Name: <sf:input path="firstName" /><br/>
+    Last Name: <sf:input path="lastName" /><br/>
+    Email: <sf:input path="email" /><br/>
+    Username: <sf:input path="username" /><br/>
+    Password: <sf:password path="password" /><br/>
     <input type="submit" value="Register" />
-</form>
+</sf:form>
 </body>
 </html>

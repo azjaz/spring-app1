@@ -24,6 +24,7 @@ public class SpitterController {
     public SpitterController(){}
     @GetMapping("/register")
     public String showRegistrationForm() {
+//        model.addAttribute(new Spitter());
         return "registerForm";
     }
     @PostMapping("/register")
