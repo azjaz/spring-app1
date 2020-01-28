@@ -3,8 +3,10 @@ import entity.Spittle;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.view.InternalResourceView;
+import org.xmlunit.diff.RecursiveXPathBuilder;
 import sun.security.provider.ConfigFile;
 import web.HomeController;
+import web.SpitterController;
 import web.SpittleController;
 
 import java.util.ArrayList;
@@ -48,7 +50,6 @@ public class HomeControllerTest {
         return spittles;
     }
 
-
     @Test
     public void testSpittle() throws Exception {
         Spittle expectedSpittle = new Spittle("Hello", new Date());
@@ -60,5 +61,11 @@ public class HomeControllerTest {
                 .andExpect(view().name("spittle"))
                 .andExpect(model().attributeExists("spittle"))
                 .andExpect(model().attribute("spittle", expectedSpittle));
+    }
+    @Test
+    public void shouldShowRegistration() throws Exception {
+        SpitterController controller = new SpitterController();
+        MockMvc mockMvc = standaloneSetup(controller).build();
+        mockMvc.perform(get("/spitter/register")).andExpect(view().name("registerForm"));
     }
 }
