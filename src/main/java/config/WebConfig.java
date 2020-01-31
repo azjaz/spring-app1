@@ -30,8 +30,8 @@ public class WebConfig implements WebMvcConfigurer {
         configurer.enable();
     }
 
-    @Bean
-    public MultipartResolver multipartResolver() throws IOException {
-        return new StandardServletMultipartResolver();
-    }
+//    @Bean
+//    public MultipartResolver multipartResolver() throws IOException {
+//        return new StandardServletMultipartResolver();
+//    }
 }
