@@ -1,5 +1,6 @@
 package config;
 
+import data.SpitterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -7,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import security.SpitterUserService;
 
 import javax.sql.DataSource;
 
@@ -49,16 +51,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        .passwordEncoder(new BCryptPasswordEncoder(Integer.parseInt("a12")));
 //    }
 //    user configuration with ldap db
+//    @Override
+//    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth
+//                .ldapAuthentication()
+//                .userSearchBase("ou=people")
+//                .userSearchFilter("(uid={0})")
+//                .groupSearchBase("ou=groups")
+//                .groupSearchFilter("member={0}")
+//                .contextSource()
+//                .root("dc=habuma, dc=com")
+//                .ldif("classpath:users.ldif");
+//    }
+    @Autowired
+    SpitterRepository spitterRepository;
     @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .ldapAuthentication()
-                .userSearchBase("ou=people")
-                .userSearchFilter("(uid={0})")
-                .groupSearchBase("ou=groups")
-                .groupSearchFilter("member={0}")
-                .contextSource()
-                .root("dc=habuma, dc=com")
-                .ldif("classpath:users.ldif");
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(new SpitterUserService(spitterRepository));
     }
 }
