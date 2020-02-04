@@ -23,11 +23,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
+                .formLogin()
+                .loginPage("/login")
+                .and()
+                .httpBasic()
+                .and()
                 .authorizeRequests()
                 .antMatchers("/spitters/**").hasAuthority("ROLE_SPITTER")
-                .antMatchers(HttpMethod.POST, "/spitters")
-                .access("hasRole('ROLE_SPITTER')")
-                .anyRequest().permitAll();
+                .antMatchers(HttpMethod.POST, "/spitters").access("hasRole('ROLE_SPITTER')")
+                .anyRequest().permitAll()
+                .and()
+                .requiresChannel()
+                .antMatchers("/spittr/form").requiresSecure();
 
     }
 
