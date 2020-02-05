@@ -1,5 +1,6 @@
 package web;
 
+import data.JdbcSpitterRepository;
 import data.SpitterRepository;
 import entity.Spitter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,8 @@ import java.io.IOException;
 public class SpitterController {
     private SpitterRepository spitterRepository;
     @Autowired
-    public SpitterController(SpitterRepository spitterRepository) {
-        this.spitterRepository = spitterRepository;
+    public SpitterController(JdbcSpitterRepository jdbcSpitterRepository) {
+        this.spitterRepository = jdbcSpitterRepository;
     }
     public SpitterController(){}
     @GetMapping("/register")

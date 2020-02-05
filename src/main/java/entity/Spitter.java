@@ -28,8 +28,8 @@ public class Spitter {
     @Size(min = 2, max = 30)
     private final String lastName;
 
-    public Spitter(String username, String password, String firstName, String lastName) {
-        this.id = null;
+    public Spitter(long id, String username, String password, String firstName, String lastName) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.firstName = firstName;
